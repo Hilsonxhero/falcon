@@ -31,6 +31,7 @@
                                 <tr class="title-row">
                                     <th>#</th>
                                     <th>عنوان</th>
+                                    <th>دسته پدر</th>
                                     <th>نام لاتین</th>
                                     <th>وضعیت</th>
                                     <th>تصویر</th>
@@ -43,6 +44,7 @@
                                         <tr>
                                             <td><a href="">{{ $category->id }}</a></td>
                                             <td><a href="">{{ $category->title }}</a></td>
+                                            <td><a href="">{{ $category->parent->title ?? 'ندارد' }}</a></td>
                                             <td>{{ $category->slug }}</td>
 
                                             <td>
@@ -161,14 +163,16 @@
                         </div>
 
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <p class="box__title margin-bottom-15">انتخاب دسته پدر</p>
-                            <select class="js-select-ui form-select" name="state">
+                            <select class=" form-select" wire:model="category.parent_id">
                                 <option value=""> ندارد</option>
-                                <option value="">برنامه نویسی</option>
-                                <option value="">اندروید</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
+
                             </select>
-                        </div> --}}
+                        </div>
 
 
                         <div class="form-group">

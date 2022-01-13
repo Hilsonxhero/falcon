@@ -20,14 +20,17 @@ class Index extends Component
 
     private $categoryRepo;
 
+
+
     public $icon;
     public $search;
-    public $category;
+    public Category $category;
 
     public $readyToLoad = false;
 
     public $rules = [
         'category.title' => ['required', 'min:3'],
+        'category.parent_id' => ['nullable'],
         'category.link' => ['required', 'min:3'],
         'category.status' => ['nullable'],
     ];
@@ -63,9 +66,33 @@ class Index extends Component
 
         $this->validate();
 
-        $this->category->media_id = MediaFileService::publicUpload($this->icon)->id;
 
-        $this->category->save();
+
+
+        // if ($this->icon)   $this->category->media_id = MediaFileService::publicUpload($this->icon)->id;
+
+
+
+
+        $category =  Category::query()->create([
+            'title' => $this->category->title,
+            'link' => $this->category->link,
+            'parent_id' => $this->category->parent_id,
+            'status' => $this->category->status ? true : false,
+        ]);
+
+        if ($this->icon) {
+            $category->update([
+                'media_id' => MediaFileService::publicUpload($this->icon)->id
+            ]);
+        }
+
+        $this->category->title = "";
+        $this->category->icon = "";
+        $this->category->name = "";
+        $this->category->link = "";
+        $this->category->status = false;
+        $this->icon = null;
     }
 
     public function chnageStatus($type, $id)

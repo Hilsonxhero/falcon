@@ -18,3 +18,11 @@ Route::get('/dashboard', \App\Http\Livewire\Admin\Dashboard\Index::class)->name(
 Route::get('/categories', \App\Http\Livewire\Admin\Category\Index::class)->name('categories.index');
 
 Route::get('/categories/update/{category}', \App\Http\Livewire\Admin\Category\Update::class)->name('categories.update');
+
+Route::get('/logs', \App\Http\Livewire\Admin\Log\Index::class)->name('logs.index');
+
+Route::get('/products', \App\Http\Livewire\Admin\Product\Index::class)->name('products.index');
+
+Route::get('/products/create', \App\Http\Livewire\Admin\Product\Create::class)->name('products.store');
+
+Route::get('/products/update/{product}', \App\Http\Livewire\Admin\Product\Update::class)->name('products.update');

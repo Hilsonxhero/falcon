@@ -14,7 +14,7 @@
     <script src="{{ asset('/panel/assets/js/custom.js') }}"></script>
     <!-- Custom Js -->
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="{{ asset('/panel/assets/js/editor.js') }}"></script> --}}
     <livewire:scripts />
     <script src="{{ asset('panel/assets/js/turbolinks.js') }}" data-turbolinks-eval="false" data-turbo-eval="false">
     </script>
@@ -45,7 +45,18 @@
                     }
                 })
             })
+
+            // window.livewire.hook('afterDomUpdate', () => {
+            //     $(document).ready(function() {
+            //         $('.js-select-ui').select2({
+            //             language: "fa"
+            //         });
+            //     });
+
+            // });
         })
     </script>
+
+    @yield('script')
 
 </div>

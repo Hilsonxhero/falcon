@@ -951,7 +951,8 @@ select option {
     justify-content: flex-start;
     margin-bottom: 12px;
     align-items: center;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    border-radius: 0.475rem;
 }
 
 .tags li.addedTag,
@@ -961,9 +962,11 @@ select option {
 }
 
 .tags li.addedTag {
-    border: 1px solid #6e00ff;
-    color: #6e00ff !important;
-    border-radius: 2px;
+    border: 1px solid rgb(000, 000, 000);
+    color: rgb(000, 000, 000) !important;
+
+
+    border-radius: .357rem;
     padding: .6rem;
     font-size: 13px;
     vertical-align: middle;
@@ -1071,9 +1074,9 @@ li.addedTag {
     text-align: center;
     background: 0 0;
     color: #6c757d !important;
-    border-radius: 6px;
+    border-radius: .475rem;
     cursor: pointer;
-    border: 2px dashed #eeeef5
+    border: 2px solid #eeeef5
 }
 
 .file-upload-ui label:after {
@@ -3170,7 +3173,7 @@ input.error-alert-ui {
 }
 
 :root {
-    --vs-primary: 26,92,255
+    --vs-primary: 26, 92, 255
 }
 
 .lds-roller div:after {

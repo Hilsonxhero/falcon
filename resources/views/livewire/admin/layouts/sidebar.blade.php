@@ -3,15 +3,32 @@
         <span class="bars d-none px-4"></span>
         <div class="navbar-brand d-flex justify-content-center">
             <a class="d-inline-block my-3 sidebar__logo" href="">
-                <img class="img-fluid" src="{{asset('panel/assets/images/logo-dark.svg')}}" alt="">
+                <img class="img-fluid" src="{{ asset('panel/assets/images/logo-dark.svg') }}" alt="">
             </a>
         </div>
         <ul>
-            <li class="item-li i-dashboard @if(request()->is('admin/dashboard')) is-active @endif"><a href="{{route('admin.dashboard')}}" class="">پیشخوان</a></li>
+            <li class="item-li i-dashboard @if (request()->is('admin/dashboard')) is-active @endif"><a href="{{ route('admin.dashboard') }}"
+                    class="">پیشخوان</a></li>
 
-            <li class="item-li i-categories @if(request()->is('admin/categories')) is-active @endif"><a href="{{route('admin.categories.index')}}">دسته بندی ها</a></li>
+            <li class="item-li i-categories @if (request()->is('admin/categories')) is-active @endif"><a
+                    href="{{ route('admin.categories.index') }}">دسته بندی ها</a></li>
 
-            <li class="item-li i-courses has-sub-ui"><a class="has-arrow-ui" href="#">دوره ها</a>
+
+
+
+            <li class="item-li i-courses has-sub-ui"><a class="has-arrow-ui">محصولات</a>
+                <ul class="collapse show">
+                    <li><a href="create-new-course.html">ایجاد محصول</a></li>
+                    <li><a href="{{ route('admin.products.index') }}">لیست محصول</a></li>
+                </ul>
+            </li>
+
+
+            <li class="item-li i-articles @if (request()->is('admin/logs')) is-active @endif"><a href="{{ route('admin.logs.index') }}">گزارشات
+                    سیستم</a>
+            </li>
+
+            {{-- <li class="item-li i-courses has-sub-ui"><a class="has-arrow-ui" href="#">دوره ها</a>
                 <ul class="collapse show">
                     <li><a href="create-new-course.html">ایجاد محصول</a></li>
                     <li><a href="courses.html">لیست محصول</a></li>
@@ -52,7 +69,7 @@
 
             <li class="item-li i-setting"><a href="notification-management.html">تنظیمات</a>
             </li>
-            <li class="item-li i-user__inforamtion"><a href="profile.html">اطلاعات کاربری</a></li>
+            <li class="item-li i-user__inforamtion"><a href="profile.html">اطلاعات کاربری</a></li> --}}
 
         </ul>
     </div>

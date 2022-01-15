@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
+use App\Models\Log;
 use App\Repository\category\CategoryRepo;
 use App\Repository\category\CategoryRepoInterface;
 use App\Services\MediaFileService;
@@ -87,6 +88,13 @@ class Index extends Component
             ]);
         }
 
+        Log::create([
+            'title' => 'ایجاد دسته بندی' . ' ' . $category->title,
+            'url' => route('admin.categories.index'),
+            'user_id' => auth()->user()->id,
+            'action' => Log::CREATE_ACTION
+        ]);
+
         $this->category->title = "";
         $this->category->icon = "";
         $this->category->name = "";
@@ -103,6 +111,14 @@ class Index extends Component
         $category->status = $type;
         $category->save();
 
+
+        Log::create([
+            'title' => 'تغییر وضعیت دسته بندی' . ' ' . $category->title,
+            'url' => route('admin.categories.index'),
+            'user_id' => auth()->user()->id,
+            'action' => Log::CHANGE_STATUS_ACTION
+        ]);
+
         $this->emit('toast', 'success', 'وضعیت دسته با موفقیت تغییر کرد');
     }
 
@@ -111,6 +127,13 @@ class Index extends Component
         $category = Category::query()->find($id);
 
         $category->delete();
+
+        Log::create([
+            'title' => ' حذف دسته بندی' . ' ' . $category->title,
+            'url' => route('admin.categories.index'),
+            'user_id' => auth()->user()->id,
+            'action' => Log::DELETE_ACTION
+        ]);
 
         $this->emit('toast', 'info', 'عملیات موفیت آمیز بود');
     }

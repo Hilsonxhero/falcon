@@ -38,8 +38,10 @@
     <link rel="stylesheet" href="{{ asset('panel/assets/fonts/remixicon/remixicon.css') }}">
     <!--end:: Font && Icons-->
 
+    @yield('style')
+
     <livewire:styles />
 
-    <title>پنل مدیریت</title>
+    <title>پنل مدیریت - @yield('title')</title>
 
 </div>

@@ -16,12 +16,18 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->foreignId('media_id');
+            $table->foreignId('category_id');
             $table->string('slug');
             $table->string('description')->nullable();
             $table->string('link')->nullable();
             $table->boolean('status')->default(0);
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('media_id')->references('id')->on('media')->onDelete('cascade');
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

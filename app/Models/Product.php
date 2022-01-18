@@ -63,9 +63,6 @@ class Product extends Model
 
     public function getBannerSrcAttribute()
     {
-        // dd($this->banner);
-        // return $this->banner->thumb();
-        // return $this->banner->id;
     }
 
     public function sluggable(): array

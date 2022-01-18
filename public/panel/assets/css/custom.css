@@ -260,8 +260,9 @@ ul li {
 }
 
 .sidebar__nav>ul>li {
-    margin: 0 10px;
-    position: relative
+    margin: 1rem 10px;
+    position: relative;
+    padding: .1rem .4rem;
 }
 
 .sidebar__logo {
@@ -273,14 +274,14 @@ ul li {
     font-size: 15px;
     width: 100%;
     margin: 5px 0;
-    padding: 10px 50px;
+    padding: 5px 10px;
     white-space: nowrap;
     border-radius: 40px;
     display: inline-block;
     font-weight: 600
 }
 
-.sidebar__nav>ul>li:hover>a,
+/* .sidebar__nav>ul>li:hover>a,
 .sidebar__nav>ul>li:hover>a:after,
 .sidebar__nav>ul>li:hover>a:before {
     transition: color .2s ease;
@@ -298,13 +299,37 @@ ul li {
 .sidebar__nav ul li:hover>a:after,
 .sidebar__nav ul li:hover>a:before {
     color: #00a3ff !important
+} */
+
+.sidebar__nav ul li.is-active {
+
+    /* background: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, .7)); */
+
+    /* background: rgba(26, 92, 255, 1); */
+
+    background-image: radial-gradient(circle farthest-corner at 7.2% 13.6%, rgba(37, 249, 245, 1) 0%, rgba(8, 70, 218, 1) 90%);
+
+    box-shadow: 0 20px 20px -10px rgba(000, 000, 000, .2);
+
+
+
+
+    transition: all .3s ease-in-out;
+
+
+    /* -webkit-box-shadow: 0 0 6px 1px rgb(115 103 240 / 60%);
+    box-shadow: 0 0 6px 1px rgb(115 103 240 / 60%); */
+    border-radius: .4rem;
+
+    color: #fff;
 }
 
-.sidebar__nav ul li.is-active>a,
-.sidebar__nav ul li.is-active>a::before {
-    /* color: #2b4a83; */
-    color: #00a3ff !important;
+.sidebar__nav ul li.is-active a {
+    color: #fff;
+}
 
+.sidebar__nav ul li.is-active svg {
+    color: #fff;
 }
 
 .sidebar__nav ul li a::before {
@@ -521,6 +546,7 @@ ul li {
     transition: all 250ms ease-out
 }
 
+/*
 .sidebar__nav>ul li>a.has-arrow-ui:after {
     content: "\EA4E";
     transition: all .3s ease-out 0s;
@@ -529,7 +555,7 @@ ul li {
     color: #555;
     font-size: 24px;
     font-weight: 500
-}
+} */
 
 ul li.has-sub-ui.open>a:after {
     transform: rotate(180deg);
@@ -3257,6 +3283,13 @@ input.error-alert-ui {
 .lds-roller div:nth-child(8):after {
     top: 56px;
     left: 12px;
+}
+
+.sidebar__icon {
+    height: 30px;
+    width: 30px;
+
+    color: #636e72;
 }
 
 @keyframes lds-roller {

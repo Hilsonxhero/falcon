@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = [
         'category_id',
@@ -55,16 +56,17 @@ class Product extends Model
     }
 
 
-    public function media()
+    public function banner()
     {
         return $this->belongsTo(Media::class, 'media_id');
     }
 
     public function getBannerSrcAttribute()
     {
-        // return $this->media->thumb();
+        // dd($this->banner);
+        // return $this->banner->thumb();
+        // return $this->banner->id;
     }
-
 
     public function sluggable(): array
     {

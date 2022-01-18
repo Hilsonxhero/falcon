@@ -32,7 +32,10 @@ class Index extends Component
     }
     public function render()
     {
-        $products = $this->readyToLoad ? Product::where('title', 'LIKE', "%{$this->search}%")->latest()->paginate(15) : [];
+
+        // $test = Product::where('id', 3)->with('banner')->first();
+        // dd($test->banner->thumb());
+        $products = $this->readyToLoad ? Product::where('title', 'LIKE', "%{$this->search}%")->with('banner')->latest()->paginate(15) : [];
 
         return view('livewire.admin.product.index', compact('products'));
     }

@@ -128,23 +128,23 @@
             }
 
             /* .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
-                                                                                                            border-radius: 0 0 0.475rem 0.475rem;
-                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                border-radius: 0 0 0.475rem 0.475rem;
+                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                        .ck.ck-editor .ck-editor__top .ck-sticky-panel .ck-toolbar {
-                                                                                                            border-radius: 0.475rem 0.475rem 0 0;
-                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                            .ck.ck-editor .ck-editor__top .ck-sticky-panel .ck-toolbar {
+                                                                                                                                                                                                                                                                                                                                                                border-radius: 0.475rem 0.475rem 0 0;
+                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                        .ck.ck-editor__main>.ck-editor__editable {
-                                                                                                            background-color: #f5f8fa;
-                                                                                                            border: unset !important;
-                                                                                                            border-radius: 0.475rem;
-                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                            .ck.ck-editor__main>.ck-editor__editable {
+                                                                                                                                                                                                                                                                                                                                                                background-color: #f5f8fa;
+                                                                                                                                                                                                                                                                                                                                                                border: unset !important;
+                                                                                                                                                                                                                                                                                                                                                                border-radius: 0.475rem;
+                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                        .ck.ck-editor .ck-editor__top .ck-sticky-panel .ck-toolbar {
-                                                                                                            border: unset !important;
-                                                                                                            background-color: #f5f8fa;
-                                                                                                        } */
+                                                                                                                                                                                                                                                                                                                                                            .ck.ck-editor .ck-editor__top .ck-sticky-panel .ck-toolbar {
+                                                                                                                                                                                                                                                                                                                                                                border: unset !important;
+                                                                                                                                                                                                                                                                                                                                                                background-color: #f5f8fa;
+                                                                                                                                                                                                                                                                                                                                                            } */
 
         </style>
 
@@ -218,7 +218,8 @@
                         <div class="row">
                             <div class="col-md-3" wire:key="UNIQUE_KEY">
                                 <div class="form-group" wire:ignore>
-                                    <select class="js-select-ui form-select" wire:model="product.category">
+                                    <select class="js-select-ui form-select" wire:model="product.category"
+                                        data-bind="product.category" id="category">
                                         <option value="">انتخاب دسته بندی </option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}" wire:key="{{ $category->id }}">
@@ -230,7 +231,8 @@
 
                             <div class="col-md-3">
                                 <div class="form-group" wire:ignore>
-                                    <select class="js-select-ui form-select" wire:model.lazy="product.guarantee">
+                                    <select class="js-select-ui form-select" wire:model.lazy="product.guarantee"
+                                        data-bind="product.guarantee">
                                         <option value="">گارانتی محصول</option>
                                         @foreach ($guarantees as $guarantee)
                                             <option value="{{ $guarantee->id }}">{{ $guarantee->title }}</option>
@@ -241,7 +243,8 @@
 
                             <div class="col-md-3">
                                 <div class="form-group" wire:ignore>
-                                    <select class="js-select-ui form-select" wire:model.lazy="product.brand">
+                                    <select class="js-select-ui form-select" wire:model.lazy="product.brand"
+                                        data-bind="product.brand">
                                         <option value="">برند محصول</option>
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}">{{ $brand->title }}</option>
@@ -252,7 +255,8 @@
 
                             <div class="col-md-3">
                                 <div class="form-group" wire:ignore>
-                                    <select class="js-select-ui form-select" wire:model.lazy="product.shipment">
+                                    <select class="js-select-ui form-select" wire:model.lazy="product.shipment"
+                                        data-bind="product.shipment">
                                         <option value="">روش ارسال</option>
                                         @foreach ($shipments as $shipment)
                                             <option value="{{ $shipment->id }}">{{ $shipment->title }}</option>
@@ -353,8 +357,8 @@
 
                         <div class="form-group" wire:ignore>
                             <div class="toolbar-container bg-white"></div>
-                            <textarea class="form-control editor" id="editor" style="height: 200px"
-                                wire:model.lazy="product.body"></textarea>
+                            <textarea class="form-control editor" style="height: 200px" wire:model="body" name="body"
+                                id="body"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -371,7 +375,7 @@
         <!-- ckeditor Plugin Js -->
         <script>
             ClassicEditor
-                .create(document.querySelector('.editor'), {
+                .create(document.querySelector('#body'), {
 
                     licenseKey: '',
                     language: 'fa',
@@ -381,6 +385,10 @@
                 .then(editor => {
                     window.editor = editor;
 
+
+                    editor.model.document.on('change:data', () => {
+                        @this.set('product.body', editor.getData());
+                    })
 
 
 
@@ -393,6 +401,29 @@
                     console.warn('Build id: kyym5to7fv5h-1gl6pd4a95xm');
                     console.error(error);
                 });
+
+
+            $(document).ready(function() {
+
+                // $('#category').on('change', function(e) {
+                //     var data = $('#category').select2("val");
+                //     @this.set('product.category', data);
+                // });
+
+
+                $('.js-select-ui').on('change', function(e) {
+                    let bind = $(this).data("bind");
+                    console.log(bind);
+                    var data = $(this).select2("val");
+                    console.log(`data : ${data}  bind : ${bind}`);
+                    @this.set(bind, data);
+                });
+
+
+
+            });
         </script>
+
+
     @endsection
 </div>

@@ -53,7 +53,7 @@
                                         <tr>
                                             <td>{{ $product->id }}</td>
                                             <td>{{ $product->title }}</td>
-                                            <td><img src="{{ asset($product->banner_src) }}"></td>
+                                            <td><img width="100" src="{{ asset($product->banner->thumb()) }}"></td>
                                             <td>{{ number_format($product->price) }}</td>
                                             <td>{{ $product->count }}</td>
                                             <td>{{ $product->category->title }}</td>
@@ -86,7 +86,7 @@
                                                 </button>
 
 
-                                                <a href="{{ route('admin.categories.update', $product->id) }}"
+                                                <a href="{{ route('admin.products.update', $product->id) }}"
                                                     type="button" class="btn btn-sm btn-default ac-btn-ui"><i
                                                         class="ri-edit-2-line"></i></a>
 

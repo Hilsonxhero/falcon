@@ -16,7 +16,7 @@ class ImageFileService extends DefaultFileService implements FileServiceContract
         $ex = $file->getClientOriginalExtension();
         // $file->move(storage_path($dir), $filename . '.' . $ex);
 
-        $path = $dir . $filename . '.' . $ex;
+        $path =  $filename . '.' . $ex;
 
         $file->storeAs($dir, $filename . '.' . $ex);
 
@@ -42,7 +42,8 @@ class ImageFileService extends DefaultFileService implements FileServiceContract
 
     public static function thumb(Media $media)
     {
-        return '/storage/' . $media->files[300];
+
+        return '/storage/' . $media->files['original'];
     }
 
     public static function getFileName()

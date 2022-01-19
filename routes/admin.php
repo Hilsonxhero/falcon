@@ -50,7 +50,7 @@ Route::get('/brands/update/{brand}', \App\Http\Livewire\Admin\Brand\Update::clas
 
 /*
 |--------------------------------------------------------------------------
-| brands
+| shipments
 |--------------------------------------------------------------------------
  */
 
@@ -59,3 +59,18 @@ Route::get('/shipments', \App\Http\Livewire\Admin\Shipment\Index::class)->name('
 Route::get('/shipments/create', \App\Http\Livewire\Admin\Shipment\Create::class)->name('shipments.store');
 
 Route::get('/shipments/update/{shipment}', \App\Http\Livewire\Admin\Shipment\Update::class)->name('shipments.update');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| guarantees
+|--------------------------------------------------------------------------
+ */
+
+Route::get('/guarantees', \App\Http\Livewire\Admin\Guarantee\Index::class)->name('guarantees.index');
+
+Route::get('/guarantees/create', \App\Http\Livewire\Admin\Guarantee\Create::class)->name('guarantees.store');
+
+Route::get('/guarantees/update/{guarantee}', \App\Http\Livewire\Admin\Guarantee\Update::class)->name('guarantees.update');

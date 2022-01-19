@@ -46,3 +46,16 @@ Route::get('/brands', \App\Http\Livewire\Admin\Brand\Index::class)->name('brands
 Route::get('/brands/create', \App\Http\Livewire\Admin\Brand\Create::class)->name('brands.store');
 
 Route::get('/brands/update/{brand}', \App\Http\Livewire\Admin\Brand\Update::class)->name('brands.update');
+
+
+/*
+|--------------------------------------------------------------------------
+| brands
+|--------------------------------------------------------------------------
+ */
+
+Route::get('/shipments', \App\Http\Livewire\Admin\Shipment\Index::class)->name('shipments.index');
+
+Route::get('/shipments/create', \App\Http\Livewire\Admin\Shipment\Create::class)->name('shipments.store');
+
+Route::get('/shipments/update/{shipment}', \App\Http\Livewire\Admin\Shipment\Update::class)->name('shipments.update');

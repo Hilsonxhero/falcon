@@ -76,7 +76,7 @@
                     <circle cx="15.73" cy="8.3" r="2"></circle>
                     <path d="M5 16c-2 1-2 5-2 5a7.81 7.81 0 0 0 5-2z"></path>
                 </svg>
-                <a class="has-arrow-ui" href="{{ route('admin.products.index') }}">
+                <a class="has-arrow-ui" href="{{ route('admin.shipments.index') }}">
                     شیوه ارسال
                 </a>
 
